@@ -10,13 +10,13 @@ import json
 from Detection.Detection import ObjectDetection
 from Visualization.visualization import draw_box, draw_caption, label_color
 
-from ReIdentification.re_identification import OverLappedView, NonOverLappedView
-# from Tracking.deep_sort import generate_detections_torch
-from Tracking.deep_sort import generate_detections_torch_resnet
-from Tracking.deep_sort import nn_matching
-from Tracking.deep_sort.Tracking_Deep_Sort import DeepSort
-from Tracking.deep_sort.detection import Detection as deep_sort_detection
-from Tracking.deep_sort.preprocessing import non_max_suppression
+# from ReIdentification.re_identification import OverLappedView, NonOverLappedView
+# # from Tracking.deep_sort import generate_detections_torch
+# from Tracking.deep_sort import generate_detections_torch_resnet
+# from Tracking.deep_sort import nn_matching
+# from Tracking.deep_sort.Tracking_Deep_Sort import DeepSort
+# from Tracking.deep_sort.detection import Detection as deep_sort_detection
+# from Tracking.deep_sort.preprocessing import non_max_suppression
 
 
 class MultiCameraTracker:
@@ -710,7 +710,7 @@ class SingleCameraTracker:
         self._frame_number = 0
         self._config_video()
         self._config_detection()
-        self._config_tracking()
+        # self._config_tracking()
         self._config_output_image()
         self._config_log()
 
@@ -1021,13 +1021,13 @@ class SingleCameraTracker:
                     json.dump(info_list, json_outfile, indent=4, ensure_ascii=False)
 
                 detections = np.array(detections)
-                features = self._encoder_cam1(frame_copy, detections.copy())
-                cost_matrix = np.zeros((len(features), len(features)))
-                for i in range(len(features)):
-                    for j in range(len(features)):
-                        a = features[i,:].reshape((1,-1))
-                        b  = features[j,:].reshape((1,-1))
-                        cost_matrix[i,j] = nn_matching._cosine_distance(a, b, False)
+                # features = self._encoder_cam1(frame_copy, detections.copy())
+                # cost_matrix = np.zeros((len(features), len(features)))
+                # for i in range(len(features)):
+                #     for j in range(len(features)):
+                #         a = features[i,:].reshape((1,-1))
+                #         b  = features[j,:].reshape((1,-1))
+                #         cost_matrix[i,j] = nn_matching._cosine_distance(a, b, False)
 
 
                 time_end = time.time()
